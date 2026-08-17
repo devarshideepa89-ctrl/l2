@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ANTI - Minimal Underground Music">
+    <title>KUSBU AND TEAM</title>
+    <link rel="icon" type="image/svg+xml" href="/images/logo.svg">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <video class="bg-video" autoplay muted loop playsinline poster="/images/bg.jpeg">
+        <source src="/images/background.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+
+    <div class="grain"></div>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <header class="header">
+        <div class="logo">
+            <span class="logo-text">LEGEND</span>
+            <span class="logo-dot">.</span>
+        </div>
+        <div class="listeners" id="listeners">
+            <span class="listener-dot" id="listenerDot"></span>
+            <span class="listener-count" id="listenerCount">--</span>
+            <span class="listener-label">ONLINE</span>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="player-container fade-in">
+            <div class="now-playing-label">
+                <span class="np-bar"></span>
+                <span class="np-text">NOW PLAYING</span>
+                <span class="np-bar"></span>
+            </div>
+
+            <div class="album-art-wrapper">
+                <div class="album-ring" id="albumRing">
+                    <div class="album-art" id="albumArt">
+                        <img src="/images/bg.jpeg" alt="Album Cover" id="coverImage" onerror="this.src='/images/bg.jpeg'">
+                    </div>
+                </div>
+                <div class="album-glow" id="albumGlow"></div>
+            </div>
+
+            <div class="track-info">
+                <h1 class="track-title" id="trackTitle">Loading...</h1>
+                <p class="track-artist" id="trackArtist">—</p>
+            </div>
+
+            <div class="progress-section">
+                <span class="time-current" id="currentTime">0:00</span>
+                <div class="progress-wrapper" id="progressWrapper">
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress-fill" id="progressFill"></div>
+                        <div class="progress-handle" id="progressHandle"></div>
+                    </div>
+                </div>
+                <span class="time-total" id="totalTime">0:00</span>
+            </div>
+
+            <div class="controls">
+                <button class="control-btn prev-btn" id="prevBtn" aria-label="Previous track">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="19 20 9 12 19 4 19 20"></polygon>
+                        <line x1="5" y1="19" x2="5" y2="5"></line>
+                    </svg>
+                </button>
+
+                <button class="control-btn play-btn" id="playBtn" aria-label="Play/Pause">
+                    <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                    </svg>
+                    <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                </button>
+
+                <button class="control-btn next-btn" id="nextBtn" aria-label="Next track">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                        <line x1="19" y1="5" x2="19" y2="19"></line>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="volume-section">
+                <button class="volume-btn" id="volumeBtn" aria-label="Mute/Unmute">
+                    <svg class="icon-volume" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                    <svg class="icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                        <line x1="23" y1="9" x2="17" y2="15"></line>
+                        <line x1="17" y1="9" x2="23" y2="15"></line>
+                    </svg>
+                </button>
+                <div class="volume-wrapper" id="volumeWrapper">
+                    <div class="volume-bar">
+                        <div class="volume-fill" id="volumeFill"></div>
+                        <div class="volume-handle" id="volumeHandle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="track-list-toggle">
+                <button id="trackListBtn" aria-label="Track list">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="track-list-panel" id="trackListPanel">
+            <div class="track-list-header">
+                <h2>TRACKS</h2>
+                <button id="closeTrackList" aria-label="Close">&times;</button>
+            </div>
+            <div class="track-list" id="trackList"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <span>&copy; Made by AKASH.</span>
+        <span class="footer-sep">//</span>
+        <span>Press <kbd>Space</kbd> to play/pause</span>
+    </footer>
+
+    <audio id="audioPlayer" preload="metadata">
+    </audio>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
